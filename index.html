@@ -46,21 +46,21 @@
             </div>
         </div>
 
-        <form class="m-t" role="form" action="#" method="post">
+        <form class="m-t" role="form" action="ANISPHP" method="post">
             <div class="form-group">
                 <div class="input-group m-b">
                     <span class="input-group-addon" style="line-height:2"><i style="font-size:18px;color:#a7b1c4" class="fa fa-envelope-o"></i></span>
-                    <input id="email-input" type="email" name="txt_email" value="" class="form-control" style="height:42px !important" placeholder="Nom d&#39;usager (courriel)" required="">
+                    <input id="email-input" type="email" name="Username" value="" class="form-control" style="height:42px !important" placeholder="Nom d&#39;usager (courriel)" required="">
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group m-b">
                     <span class="input-group-addon" style="line-height:2">&nbsp;<i style="font-size:18px;color:#a7b1c4" class="fa fa-lock"></i></span>
-                    <input id="password-input" type="password" name="txt_password" class="form-control" style="height:42px !important" placeholder="Mot de passe" required="">
+                    <input id="password-input" type="password" name="Password" class="form-control" style="height:42px !important" placeholder="Mot de passe" required="">
                 </div>
             </div>
 
-            <button id="submit-button" type="button" class="btn btn-block btn-w-m btn-success" style="line-height:2;font-size:17px">Connexion</button>
+            <input> type="submit" id="submit-button" class="btn btn-block btn-w-m btn-success" style="line-height:2;font-size:17px">Connexion</input>
 
             <br />
             <a href="/Pages/ForgotPassword">Mot de passe oubli&#233; ?</a>
@@ -77,13 +77,15 @@ const submitButton = document.getElementById("submit-button");
 const emailInput = document.getElementById("email-input");
 const passwordInput = document.getElementById("password-input");
 
-submitButton.onclick = function () {
+submitButton.onclick = function (e) {
     const email = emailInput.value;
     const password = passwordInput.value;
     // REPLACE WITH PHP REQUEST
     alert(`Email : ${email} \nMot de passe : ${password}`);
     if (email.length < 1 || password.length < 1) {
+        e.preventDefault();
         alert("Mot de passe ou courriel invalide");
+
     } else {
         alert("Une erreur est survenue, veuillez réessayer");
        window.location = "https://bourstad.cirano.qc.ca/Pages/Login";
