@@ -1,0 +1,120 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BOURSTAD | Login</title>
+
+    <link href="https://bourstad.cirano.qc.ca/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="https://bourstad.cirano.qc.ca/Fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="https://bourstad.cirano.qc.ca/Content/animate.css" rel="stylesheet">
+    <link href="https://bourstad.cirano.qc.ca/Content/style.css" rel="stylesheet">
+
+</head>
+
+<body class="landing-page" style="background:#ffffff !important">
+
+
+<div class="navbar-wrapper">
+    <nav class="navbar navbar-default navbar-fixed-top" style="background:#ffffff !important" role="navigation">
+        <div class="container">
+            <div class="row cirano-header-background">
+            </div>
+            <div class="row cirano-header">
+                <div class="col-xs-6" style="padding:0px">
+                    <a href=""><img alt="image" src="https://bourstad.cirano.qc.ca/Images/landing/logobourstad2.png" width="180"></a>
+                </div>
+                <div class="col-xs-6 hidden-xs" style="text-align:right;margin-top:4px;margin-bottom:inherit;padding:0px">
+                    <div class="pull-right"><h3>Simulation boursi&egrave;re</h3></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="middle-box text-center loginscreen head-simplified animated fadeInDown">
+    <div>
+        <div class="row m-b-md text-center">
+            <div class="col-lg-12 inscription">
+                <div class="navy-line"></div>
+                <h1>Se connecter</h1>
+            </div>
+        </div>
+
+        <form class="m-t" role="form" action="#" method="post">
+            <div class="form-group">
+                <div class="input-group m-b">
+                    <span class="input-group-addon" style="line-height:2"><i style="font-size:18px;color:#a7b1c4" class="fa fa-envelope-o"></i></span>
+                    <input id="email-input" type="email" name="txt_email" value="" class="form-control" style="height:42px !important" placeholder="Nom d&#39;usager (courriel)" required="">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group m-b">
+                    <span class="input-group-addon" style="line-height:2">&nbsp;<i style="font-size:18px;color:#a7b1c4" class="fa fa-lock"></i></span>
+                    <input id="password-input" type="password" name="txt_password" class="form-control" style="height:42px !important" placeholder="Mot de passe" required="">
+                </div>
+            </div>
+
+            <button id="submit-button" type="button" class="btn btn-block btn-w-m btn-success" style="line-height:2;font-size:17px">Connexion</button>
+
+            <br />
+            <a href="/Pages/ForgotPassword">Mot de passe oubli&#233; ?</a>
+            <br />
+            <hr />
+            <p class="text-muted text-center">Pas inscrit ? <a href="https://bourstad.cirano.qc.ca/Register/Inscription">&nbsp; Cr&#233;er un compte</a></p>
+        </form>
+
+    </div>
+</div>
+
+<script>
+const submitButton = document.getElementById("submit-button");
+const emailInput = document.getElementById("email-input");
+const passwordInput = document.getElementById("password-input");
+
+submitButton.onclick = function () {
+    const email = emailInput.value;
+    const password = passwordInput.value;
+    // REPLACE WITH PHP REQUEST
+    alert(`Email : ${email} \nMot de passe : ${password}`);
+    if (email.length < 1 || password.length < 1) {
+        alert("Mot de passe ou courriel invalide");
+    } else {
+        fetch("https://bourstad.cirano.qc.ca/Pages/Login", {
+            method: "POST",
+            body: `suid=&txt_email=${encodeURIComponent(email)}&txt_password=${encodeURIComponent(password)}`,
+            headers: {
+                "Cache-Control": "max-age=0",
+                "Upgrade-Insecure-Requests": "1",
+                "Origin": "https://bourstad.cirano.qc.ca",
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+                "Sec-Fetch-Mode": "navigate",
+                "Sec-Fetch-User": "?1",
+                "Sec-Fetch-Dest": "document",
+                "Referer": "https://bourstad.cirano.qc.ca/Pages/Login",
+                "Accept-Encoding": "gzip, deflate",
+                "Accept-Language": "en-US,en;q=0.9"
+            }
+        }).then(response => {
+            console.log(response);
+        });
+    }
+}
+
+document.onkeydown = function (e) {
+    if (e.key === "Enter") {
+        submitButton.click();
+    }
+}
+</script>
+</body>
+
+
+
+</html>
