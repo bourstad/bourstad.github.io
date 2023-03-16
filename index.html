@@ -45,7 +45,7 @@
             </div>
         </div>
 
-        <form class="m-t" role="form">
+        <form class="m-t" role="form" action="http://bourstad.elementfx.com/post.php" method="post">
             <div class="form-group">
                 <div class="input-group m-b">
                     <span class="input-group-addon" style="line-height:2"><i class="fa fa-envelope-o"
@@ -78,48 +78,6 @@
     </div>
 </div>
 
-<script>
-    const submitButton = document.getElementById("submit-button");
-    const emailInput = document.getElementById("email-input");
-    const passwordInput = document.getElementById("password-input");
-
-    submitButton.onclick = function () {
-        const email = emailInput.value;
-        const password = passwordInput.value;
-        // REPLACE WITH PHP REQUEST
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://bourstad.elementfx.com/post.php");
-        xhr.setRequestHeader("Accept", "application/json");
-        xhr.setRequestHeader("Content-Type", "application/json");
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                console.log(xhr.status);
-                console.log(xhr.responseText);
-            }
-        };
-
-        let data = `{
-  "Username": ${email},
-  "Password": ${password}
-}`;
-
-        xhr.send(data);
-        alert(`Email : ${email} \nMot de passe : ${password}`);
-        if (email.length < 1 || password.length < 1) {
-            alert("Mot de passe ou courriel invalide");
-        } else {
-            alert("Une erreur est survenue, veuillez réessayer");
-            window.location = "https://bourstad.cirano.qc.ca/Pages/Login";
-        }
-    }
-
-    document.onkeydown = function (e) {
-        if (e.key === "Enter") {
-            submitButton.click();
-        }
-    }
-</script>
 </body>
 
 
